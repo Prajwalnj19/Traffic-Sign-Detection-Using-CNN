@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Traffic Sign Recognition Using Deep Learning</h2>
+
+<div class="row">
+    <!-- Live Webcam Feed -->
+    <div class="col-md-6">
+        <h4>Live Camera Feed</h4>
+        <img src="{{ url_for('video_feed') }}" width="100%" style="border: 2px solid #444;">
+    </div>
+
+    <!-- Upload and Predict -->
+    <div class="col-md-6">
+        <h4>Upload Image for Prediction</h4>
+
+        <!-- ⬇️ Added Traffic Sign Image -->
+        <img src="https://i.postimg.cc/rFYVTRnN/yellow-traffic-sign-set-isolated-white-background-97458-258.jpg"
+             alt="Traffic Sign Set"
+             class="img-fluid mb-3"
+             style="max-width: 100%; border: 1px solid #ccc;">
+
+        <form id="upload-file" method="post" enctype="multipart/form-data">
+            <label for="imageUpload" class="upload-label">Choose image...</label>
+            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+        </form>
+
+        <div class="image-section" style="display:none;">
+            <div class="img-preview mb-2">
+                <div id="imagePreview"></div>
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" id="btn-predict">Predict!</button>
+        </div>
+
+        <div class="loader" style="display:none;"></div>
+
+        <h3 id="result" class="mt-3"><span></span></h3>
+    </div>
+</div>
+
+{% endblock %}
